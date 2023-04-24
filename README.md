@@ -116,4 +116,19 @@ Server will message to all clients connected about the status of the ingestion t
 ![image](https://user-images.githubusercontent.com/131601602/233895726-6d3260e9-3220-44a9-b314-3975b27f4157.png)
 
 ------------------------------------------------------------------------------
+The file Answer_to_questions.sql contains the select statements to the answer to the following question
+
+-From the two most commonly appearing regions, which is the latest datasource?
+-What regions has the "cheap_mobile" datasource appeared in?
+
+------------------------------------------------------------------------------
+Sketch up in cloud
+
+Azure BLOB Storage/Azure DataLake: Utilize a blob storage location as a landing place where the file will be received and will trigger an Azure DAta Factory process to start the ingestion.
+Azure Data Factory: With this tool, the file received can be processed and loaded into Azure SQL Database, also additional process can be performed over the data after the ingestion, in order to have it ready to be consumed by RestAPI.
+Azure SQL Database: Database to store up the data ingested
+Azure Events Hubs: As a message broker.
+Azure Functions: To integrate a restapi application that will, mainly, return inquiries over the data processed
+
+--------------------------------------------------------------------------------
 
