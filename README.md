@@ -54,4 +54,66 @@ python src\app.py
 
 --------------------------------------------------------------------------
 
+Test
+
+This RestfulAPI contains four POST method and one websocket
+
+1) load
+Load the data from the CSV and group the trips by origin coords, destionation coords and hour (it calls the same function as set_trips_grouped method), this last value is store in the column trip_group from trips table.
+Params in JSON:
+   @path: String. Route where the CSV is located.
+   @grouping_coords_degree: Float. Number that will be used to round coords and be able to get grouped. If not defined, 0.5 will be used. Take in mind that 0.1 degree equals to 11KM.
+JSON Example:
+{
+	"path":"https://drive.google.com/uc?id=14JcOSJAWqKOUNyadVZDPm7FplA7XYhrU"
+	, "grouping_coords_degree": 0.5
+}
+http://127.0.0.1:5000/trips/load
+![image](https://user-images.githubusercontent.com/131601602/233895235-d1acee05-e4cf-40e9-b677-756fb0e58b8e.png)
+
+2) get_trips_grouped
+Returns the groups of trips in which their quantity of trips more or equal that the minimum_count value given by parameter. This method also return the data for the trips
+Param in JSON:
+    @minimum_count: Parameter to define the minimum quantity of trips that a group should have in order to be returned
+JSON Example:
+{
+	"minimum_count":2
+}
+http://127.0.0.1:5000/trips/get_trips_grouped
+![image](https://user-images.githubusercontent.com/131601602/233895218-cb6333f7-7d7a-46e6-b055-c805d7707501.png)
+
+3)set_trips_grouped
+Group the trips by origin coords, destionation coords and hour in the trips table.
+Params in JSON:
+   @grouping_coords_degree: Float. Number that will be used to round coords and be able to get grouped. If not defined, 0.5 will be used. Take in mind that 0.1 degree equals to 11KM.
+JSON Example:
+{
+	"grouping_coord_degree":0.5
+}
+http://127.0.0.1:5000/trips/set_trips_grouped
+![image](https://user-images.githubusercontent.com/131601602/233895302-d65859aa-99bb-4c15-806b-0e272cc898ea.png)
+
+4)weekly_average_trips
+Return the weekly average quantity of trips performed in a region or in a bouncing box. If both are settend, only region will be used.
+Params in JSON:
+    @region: Name of the region where the trips should be filtered and get the average.
+    @bounding_box: Coords in the order of (minlongitude, minlatitude, maxlongitude, maxlatitude). By using this, the calculation will take the trips in which the travel goes through the given coords.
+JSON Example 1:
+{
+	"region": "Hamburg"
+}
+JSON Example 2
+{
+	"bounding_box": "(9.849758,53.530411,9.991550,53.606563)"
+	
+}
+http://127.0.0.1:5000/trips/weekly_average_trips
+![image](https://user-images.githubusercontent.com/131601602/233895454-cc94416e-db0a-4cfb-a5f4-a611a6ed0b46.png)
+![image](https://user-images.githubusercontent.com/131601602/233895426-ae2cdf45-5881-461f-99b3-63a7ace756f1.png)
+
+
+Server will message to all clients connected about the status of the ingestion through the POST Method load.
+![image](https://user-images.githubusercontent.com/131601602/233895726-6d3260e9-3220-44a9-b314-3975b27f4157.png)
+
+------------------------------------------------------------------------------
 
