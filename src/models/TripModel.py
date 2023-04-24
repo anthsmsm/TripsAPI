@@ -40,7 +40,7 @@ class TripModel():
             update_status('CSV is loading', 10)
             #Start loading trips into database.
             row_count = 0
-            for row in df.iterrows():
+            for index, row in df.iterrows():
                 trip = TripEntity(
                     region=row['region'],
                     origin_coord=row['origin_coord'],
@@ -63,7 +63,7 @@ class TripModel():
             update_status('Load has been completed', 100)
             return row_count
         except Exception as ex:
-            update_status('An error ocurred: ' + ex, 0)
+            update_status('An error ocurred: ' + str(ex), 0)
             raise ex
         
     """
