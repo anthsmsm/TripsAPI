@@ -1,12 +1,14 @@
-Prerequisites
+#Prerequisites
 
 The system will requiere python 3.11 properly installed and postgresql with the extension postgis created, or postgis's docker image.
 
 Steps to execute:
 
-1)Create the destination folder where the project will be located and use GIT clone inside it to get the project or directly download from github and decompress it:
+1)Create the destination folder where the project will be located or use GIT clone inside it to get the project or directly download from github and decompress it. I nmy case, the folder that will contain the project will be C:\Projects
 
-git clone 
+git clone https://github.com/anthsmsm/TripsAPI.git
+
+![Imagen1](https://user-images.githubusercontent.com/131601602/233890507-412a7e74-929b-486e-9887-1400cd9d2621.jpg)
 
 2)In this section, we will use postgis's docker image to run a postgresql database. In order to do that, please install and configure properly Docker Desktop. Once it is installed, open the command line and run the following command:
 
